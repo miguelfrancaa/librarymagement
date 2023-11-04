@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\Category;
+use App\Models\Author;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $search = request('search');
+        $query = Book::query();
+
+        if ($search) {
+        $query->where('title', 'like', '%' . $search . '%')
+          ->orWhereHas('author', function ($query) use ($search) {
+              $query->where('name', 'like', '%' . $search . '%');
+          });
+        }
+
+        $books = $query->paginate(6);
+
+        $categories = Category::all();
+
+        return view('home', compact('books', 'search', 'categories'));
     }
 }
