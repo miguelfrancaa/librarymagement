@@ -9,21 +9,21 @@
             <div class="input-group">
               <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
               <button type="button" class="btn btn-outline-primary">search</button><br>
-              @if($search)
-              <div class ='col-md-12'>
-                <h6 class="searching">You are searching for '{{ $search }}'</h6>
-              </div>  
-              @endif
               <div class="dropdown ms-3">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ $category->name }}
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                @foreach ($categories as $category)
-                 <li><a class="dropdown-item" href="{{ route('category.show', [$category]) }}">{{ $category->name }}</a></li>
+                @foreach ($categories as $categorylist)
+                 <li><a class="dropdown-item" href="{{ route('category.show', [$categorylist]) }}">{{ $categorylist->name }}</a></li>
                 @endforeach
               </ul>
             </div>
+            @if($search)
+              <div class ='col-md-12'>
+                <h6 class="searching">You are searching for '{{ $search }}' inside category '{{ $category->name }}'</h6>
+              </div>  
+              @endif
             </div>
             </div>
             </form>

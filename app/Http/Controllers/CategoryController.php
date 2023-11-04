@@ -45,10 +45,12 @@ class CategoryController extends Controller
 
 
         if ($search) {
-        $query->where('title', 'like', '%' . $search . '%')
-          ->orWhereHas('author', function ($query) use ($search) {
-              $query->where('name', 'like', '%' . $search . '%');
-          });
+        $query->where(function ($query) use ($search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                  ->orWhereHas('author', function ($query) use ($search) {
+                      $query->where('name', 'like', '%' . $search . '%');
+                  });
+            });
         }
 
             $books = $query->paginate(6);
