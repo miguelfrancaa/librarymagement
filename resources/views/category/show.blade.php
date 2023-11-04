@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    
-     <div class="container">
+
+    <div class="container">
         <div class="row searchBar mx-auto">
-            <form action="/home" method="GET">
+            <form action="" method="GET">
             <div class="col-md-12">
             <div class="input-group">
               <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
@@ -16,7 +16,7 @@
               @endif
               <div class="dropdown ms-3">
               <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Categories
+                {{ $category->name }}
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 @foreach ($categories as $category)

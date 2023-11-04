@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class CategoryController extends Controller
 {
@@ -36,7 +37,23 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $categories = Category::all();
+        $search = request('search');
+
+        $query = Book::where('category_id', $category->id);
+
+
+
+        if ($search) {
+        $query->where('title', 'like', '%' . $search . '%')
+          ->orWhereHas('author', function ($query) use ($search) {
+              $query->where('name', 'like', '%' . $search . '%');
+          });
+        }
+
+            $books = $query->paginate(6);
+
+            return view('category.show', compact('books', 'search', 'categories', 'category'));
     }
 
     /**
