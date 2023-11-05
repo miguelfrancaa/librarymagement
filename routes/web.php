@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FavoritesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
+
+Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store');
