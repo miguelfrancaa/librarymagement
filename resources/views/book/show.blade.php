@@ -15,7 +15,7 @@
 			</div>
 			<div class="mb-4">
 				<button class="btn btn-primary mb-4 btn-lg" type="button" id="favoriteBtn"><span>@if($btn === 'add')Add to favorites @else Remove favorite @endif </span><i class="bi bi-heart-fill"></i></button><br>
-				<form action="{{ route('reserve.store', ['$book']) }}">
+				<form action="">
 					@csrf
 					<button class="btn btn-primary btn-lg" type="submit"><span class="me-3">Reserve Book</span><i class="bi bi-arrow-right-square-fill"></i></button>
 				</form>

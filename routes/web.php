@@ -29,3 +29,5 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->name(
 Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
 
 Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store');
+
+Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index');
