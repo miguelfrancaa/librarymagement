@@ -37,7 +37,7 @@
              <h5 class="card-title">{{ $book->title }}</h5>
              <h6>{{ $book->author->name }}</h6>
              <p class="card-text">{{ Str::limit($book->description, 55) }}</p>
-             <a href="" class="btn btn-primary">See +</a>
+             <a href="{{ route('book.show', [$book]) }}" class="btn btn-primary">See +</a>
        </div>
                 </div>
             </div>
