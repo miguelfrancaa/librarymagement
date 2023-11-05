@@ -4,7 +4,7 @@
     
      <div class="container">
         <div class="row searchBar mx-auto">
-            <form action="/home" method="GET">
+            <form action="/" method="GET">
             <div class="col-md-12">
             <div class="input-group">
               <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />

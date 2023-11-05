@@ -2,7 +2,8 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container mt-5">
+        <h1 class="fw-bold mb-5">Favorite Books:</h1>
         <div class="row">
 @foreach($books as $book)
             <div class="col-md-4 col-sm-4 col-xs-12 d-flex justify-content-center">
@@ -18,7 +19,7 @@
             </div>
 @endforeach
         @if(count($books) == 0)
-        <h3 class="mt-2">No results for your search.</h3>
+        <h3 class="mt-2">You don't have any favorite book. </h3>
         @endif
         </div>
         <div class="row d-flex justify-content-center">

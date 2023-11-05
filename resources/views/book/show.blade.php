@@ -14,7 +14,11 @@
 				<h3 class="h5">{{ $book->description }}</h3>
 			</div>
 			<div class="mb-4">
+				@if(!empty($btn))
 				<button class="btn btn-primary mb-4 btn-lg" type="button" id="favoriteBtn"><span>@if($btn === 'add')Add to favorites @else Remove favorite @endif </span><i class="bi bi-heart-fill"></i></button><br>
+				@else
+				<button class="btn btn-primary mb-4 btn-lg"><a href="{{ route('login') }}" style="text-decoration: none; color: white;">Add to favorite <i class="bi bi-heart-fill"></i></a></button>
+				@endif
 				<form action="">
 					@csrf
 					<button class="btn btn-primary btn-lg" type="submit"><span class="me-3">Reserve Book</span><i class="bi bi-arrow-right-square-fill"></i></button>

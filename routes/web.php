@@ -16,11 +16,9 @@ use App\Http\Controllers\FavoritesController;
 |
 */
 
-Route::get('/', function () {
-    return view('/home');
-});
-
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -28,6 +26,6 @@ Route::get('/categories/{category}', [CategoryController::class, 'show'])->name(
 
 Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
 
-Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store');
+Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store')->middleware('auth');
 
-Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index');
+Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index')->middleware('auth');

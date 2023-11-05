@@ -36,6 +36,9 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        $btn = '';
+
+        if(auth()->check()){
         $favoritedOrNot = $book->favorited()
                                 ->where('user_id', auth()->user()->id)
                                 ->get();
@@ -45,6 +48,7 @@ class BookController extends Controller
         }else{
             $btn = 'remove';
         }
+    }
 
         return view('book.show', compact('book', 'btn'));
     }
