@@ -29,9 +29,16 @@
 			<h6 class="h5">{{ $book->quantity }} in stock.</h6>
 			@if (\Session::has('success'))
     			<div class="alert alert-success">
-        			<ul>
-            			<li>{!! \Session::get('success') !!}</li>
-       			 </ul>
+
+            			{!! \Session::get('success') !!}
+
+    			</div>
+			@endif
+			@if (\Session::has('removed'))
+    			<div class="alert alert-danger">
+
+            			{!! \Session::get('removed') !!}
+
     			</div>
 			@endif
 		</div>
