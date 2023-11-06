@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReserveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,5 @@ Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create')->middleware('auth');
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('auth');
+
+Route::post('/reserve', [ReserveController::class, 'store'])->name('reserve.store')->middleware('auth');

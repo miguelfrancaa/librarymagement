@@ -19,13 +19,21 @@
 				@else
 				<button class="btn btn-primary mb-4 btn-lg"><a href="{{ route('login') }}" style="text-decoration: none; color: white;">Add to favorite <i class="bi bi-heart-fill"></i></a></button>
 				@endif
-				<form action="">
+				<form action="{{ route('reserve.store') }}" method="POST">
 					@csrf
-					<button class="btn btn-primary btn-lg" type="submit"><span class="me-3">Reserve Book</span><i class="bi bi-arrow-right-square-fill"></i></button>
+					<input type="hidden" name="book_id" value="{{ $book->id }}">
+					<button class="btn btn-primary btn-lg" type="submit"><span class="me-3">@if($reserveBtn === 'add')Reserve Book @else Delete Reserve @endif</span><i class="bi bi-arrow-right-square-fill"></i></button>
 				</form>
 			</div>
 			<div class="mb-3"><a href="{{ route('category.show', [$book->category]) }}"><h5>See more from the category: {{ $book->category->name }}</h5></a></div>
 			<h6 class="h5">{{ $book->quantity }} in stock.</h6>
+			@if (\Session::has('success'))
+    			<div class="alert alert-success">
+        			<ul>
+            			<li>{!! \Session::get('success') !!}</li>
+       			 </ul>
+    			</div>
+			@endif
 		</div>
 	</div>
 </div>

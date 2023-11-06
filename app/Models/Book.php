@@ -18,6 +18,10 @@ class Book extends Model
     }
 
     public function favorited(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'book_user');
+    }
+
+    public function reserved(){
+        return $this->belongsToMany(User::class, 'reserves');
     }
 }

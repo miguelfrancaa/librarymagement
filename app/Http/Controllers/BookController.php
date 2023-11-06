@@ -48,9 +48,19 @@ class BookController extends Controller
         }else{
             $btn = 'remove';
         }
+
+        $reservedOrNot = $book->reserved()
+                              ->where('user_id', auth()->user()->id)
+                              ->get();
+
+        if($reservedOrNot->count() == 0){
+            $reserveBtn = 'add';
+        }else{
+            $reserveBtn = 'remove';
+        }
     }
 
-        return view('book.show', compact('book', 'btn'));
+        return view('book.show', compact('book', 'btn', 'reserveBtn'));
     }
 
     /**
