@@ -7,6 +7,8 @@
         	<h1 class="fw-bolder">Contact library</h1>
         	<h2 class="h4 mt-2">Here you can send directly messages to the library, asking for books, etc.</h2>
         </div>
+        <form action="{{ route('contact.store') }}" method="POST">
+        @csrf
         <div class="row">
         	<div class="col-md-12 mt-5">
         		 	<label for="subject" class="h3 fw-bolder text-md-end">{{ __('Subject') }}</label>
@@ -34,7 +36,14 @@
                 	</button>
             	</div>
         	</div>
-        </div>
+        	@if (\Session::has('success'))
+    			<div class="alert alert-success">
+        			<ul>
+            			<li>{!! \Session::get('success') !!}</li>
+       			 </ul>
+    			</div>
+			@endif
+        </form>
     </div>
 
 @endsection

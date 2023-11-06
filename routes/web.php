@@ -32,3 +32,5 @@ Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('fa
 Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index')->middleware('auth');
 
 Route::get('/contact', [ContactController::class, 'create'])->name('contact.create')->middleware('auth');
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('auth');
