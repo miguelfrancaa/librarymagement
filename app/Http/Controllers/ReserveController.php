@@ -13,7 +13,9 @@ class ReserveController extends Controller
      */
     public function index()
     {
-        //
+        $reserves = auth()->user()->reserves;
+
+        return view('reserve.index', compact('reserves'));
     }
 
     /**

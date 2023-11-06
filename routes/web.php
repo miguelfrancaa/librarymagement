@@ -37,3 +37,5 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact.crea
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('auth');
 
 Route::post('/reserve', [ReserveController::class, 'store'])->name('reserve.store')->middleware('auth');
+
+Route::get('/reserves', [ReserveController::class, 'index'])->name('reserves.index')->middleware('auth');
