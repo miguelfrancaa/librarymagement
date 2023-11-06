@@ -62,7 +62,7 @@
                                     <a class="dropdown-item" href="{{ route('favorite.index') }}">
                                         {{ __('Favorites') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('favorite.index') }}">
+                                    <a class="dropdown-item" href="{{ route('contact.create') }}">
                                         {{ __('Contact library') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

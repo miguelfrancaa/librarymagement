@@ -8,7 +8,7 @@
             <div class="col-md-12">
             <div class="input-group">
               <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-              <button type="button" class="btn btn-outline-primary">search</button><br>
+              <button type="submit" class="btn btn-outline-primary">search</button><br>
               @if($search)
               <div class ='col-md-12'>
                 <h6 class="searching">You are searching for '{{ $search }}'</h6>

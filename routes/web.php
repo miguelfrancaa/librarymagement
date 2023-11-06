@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
 Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store')->middleware('auth');
 
 Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index')->middleware('auth');
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create')->middleware('auth');
