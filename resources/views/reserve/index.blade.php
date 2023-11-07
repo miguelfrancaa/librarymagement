@@ -5,8 +5,9 @@
 	<table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Título</th>
-      <th scope="col">Autor</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Limit date</th>
       <th scope="col" colspan="2">Ações</th>
     </tr>
   </thead>
@@ -14,7 +15,8 @@
 @foreach($reserves as $reserve)
 	<tr>
     <td>{{ $reserve->title }}</td>
-    <td></td>
+    <td>{{$reserve->author->name }}</td>
+    <td>{{$reserve->author->name }}</td>
     <td><form action='' method="POST">
         @csrf
         @method('DELETE')

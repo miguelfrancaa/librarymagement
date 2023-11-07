@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
+use Illuminate\Support\Facades\Gate;
+
 class FavoritesController extends Controller
 {
     public function store(Book $book){
