@@ -72,6 +72,8 @@ class ReserveController extends Controller
      */
     public function destroy(Reserve $reserve)
     {
-        //
+        $reserve->delete();
+
+        return redirect()->route('reserves.index')->with('success', 'Reservation deleted successfully');
     }
 }

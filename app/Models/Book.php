@@ -22,6 +22,6 @@ class Book extends Model
     }
 
     public function reserved(){
-        return $this->belongsToMany(User::class, 'reserves')->withTimestamps();;
+        return $this->belongsToMany(User::class, 'reserves')->withPivot('id')->withTimestamps();
     }
 }

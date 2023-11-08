@@ -11,6 +11,10 @@ class Reserve extends Model
 
     protected $fillable = [
         'book_id',
-        'user_id'
+        'user_id',
     ];
+
+    public function reserved(){
+        return $this->belongsToMany(Book::class, 'reserves')->withTimestamps();
+    }
 }

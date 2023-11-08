@@ -53,6 +53,6 @@ class User extends Authenticatable
     }
 
     public function reserves(){
-        return $this->belongsToMany(Book::class, 'reserves')->withTimestamps();
+        return $this->belongsToMany(Book::class, 'reserves')->withPivot('id')->withTimestamps();
     }
 }

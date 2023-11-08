@@ -39,3 +39,5 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 Route::post('/reserve', [ReserveController::class, 'store'])->name('reserve.store')->middleware('auth');
 
 Route::get('/reserves', [ReserveController::class, 'index'])->name('reserves.index')->middleware('auth');
+
+Route::delete('/reserve/{reserve}', [ReserveController::class, 'destroy'])->name('reserve.destroy')->middleware('auth');
