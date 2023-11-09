@@ -5,7 +5,10 @@
 		<div class="row mt-5 mb-5">
     	<form class="col-md-6" action="{{ route('admin.books.index') }}" method="get">
     	@csrf
+        <div class="input-group">
     	    <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+          <button type="submit" class="btn btn-outline-primary">search</button><br>
+        </div>
     	</form>
     	<div class="col-md-6">
      	   <a href="#">

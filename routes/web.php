@@ -47,4 +47,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
     Route::get('/books', [AdminController::class, 'booksindex'])->name('admin.books.index');
+
+    Route::get('/users', [AdminController::class, 'usersindex'])->name('admin.users.index');
 });

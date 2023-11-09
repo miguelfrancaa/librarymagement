@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -77,6 +78,21 @@ class AdminController extends Controller
 
         $books = $query->get();
 
-        return view('admin.books.index', compact('books', 'search'));
+        return view('admin.book.index', compact('books', 'search'));
+    }
+
+    public function usersindex()
+    {
+        $search = request('search');
+        $query = User::query();
+
+        if($search){
+            $query->where('firstname', 'like', '%' .$search . '%')
+            ->orWhere('lastname', 'like', '%' .$search . '%');
+        }
+
+        $users = $query->get();
+
+        return view('admin.user.index', compact('users', 'search'));
     }
 }
