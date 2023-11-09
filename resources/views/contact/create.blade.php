@@ -12,7 +12,7 @@
         <div class="row">
         	<div class="col-md-12 mt-5">
         		 	<label for="subject" class="h3 fw-bolder text-md-end">{{ __('Subject') }}</label>
-                    <input id="subject" type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" value="{{ old('subject') }}" required autocomplete="subject" autofocus>
+                    <input id="subject" type="text" class="form-control @error('subject') is-invalid @enderror" name="subject" value="{{ old('subject') }}" required autocomplete="subject" autofocus placeholder="Subject of message">
 
                     @error('subject')
                         <span class="invalid-feedback" role="alert">

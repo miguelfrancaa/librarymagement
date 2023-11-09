@@ -59,6 +59,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+@can('admins')
+                                     <a class="dropdown-item fw-bold" href="{{ route('admin.index') }}">
+                                        {{ __('Admin') }}
+                                    </a>
+@endcan
                                     <a class="dropdown-item" href="{{ route('favorite.index') }}">
                                         {{ __('Favorites') }}
                                     </a>

@@ -6,6 +6,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,9 @@ Route::post('/reserve', [ReserveController::class, 'store'])->name('reserve.stor
 Route::get('/reserves', [ReserveController::class, 'index'])->name('reserves.index')->middleware('auth');
 
 Route::delete('/reserve/{reserve}', [ReserveController::class, 'destroy'])->name('reserve.destroy')->middleware('auth');
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+
+    Route::get('/books', [AdminController::class, 'booksindex'])->name('admin.books.index');
+});

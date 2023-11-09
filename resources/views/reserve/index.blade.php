@@ -14,13 +14,13 @@
   <tbody>
 @foreach($reserves as $reserve)
 	<tr>
-    <td>{{ $reserve->title }}</td>
-    <td>{{ $reserve->author->name }}</td>
-    <td>{{ $reserve->pivot->created_at->addDays(3)->format('d-m-Y') }}</td>
+    <td><h4>{{ $reserve->title }}</h4></td>
+    <td><h4>{{ $reserve->author->name }}</h4></td>
+    <td><h4>{{ $reserve->pivot->created_at->addDays(3)->format('d-m-Y') }}</h4></td>
     <td><form action="{{ route('reserve.destroy', ['reserve' => $reserve->pivot->id]) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button onclick="return confirm('Do you really want to delete the reserve?')" class="btn btn-danger btn-sm" type="submit">Remove reserve</button>
+        <button onclick="return confirm('Do you really want to delete the reserve?')" class="btn btn-danger btn-xl" type="submit">Remove reserve</button>
       </td></form>
     </tr>
 @endforeach
