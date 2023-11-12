@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Reserve;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -94,5 +95,20 @@ class AdminController extends Controller
         $users = $query->get();
 
         return view('admin.user.index', compact('users', 'search'));
+    }
+
+    public function reservesindex()
+    {
+        $search = request('search');
+        $query = Reserve::query();
+
+        if($search){
+            $query->where('firstname', 'like', '%' .$search . '%')
+            ->orWhere('lastname', 'like', '%' .$search . '%');
+        }
+
+        $reserves = $query->get();
+
+        return view('admin.reserve.index', compact('search', 'reserves'));
     }
 }

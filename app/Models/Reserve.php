@@ -17,4 +17,14 @@ class Reserve extends Model
     public function reserved(){
         return $this->belongsToMany(Book::class, 'reserves')->withTimestamps();
     }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
