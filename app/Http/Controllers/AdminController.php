@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Reserve;
+use App\Models\Author;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -143,7 +144,18 @@ class AdminController extends Controller
         return redirect('admin/reserves')->with('success', 'Reserve deleted successfully.');
     }
 
-    public function authorsindex{
+    public function authorsindex(){
+
+       $search = request('search');
+    $query = Author::query();
+
+        if($search){
+            $query->where('name', 'like', '%' .$search . '%');
+        }
+
+        $authors = $query->get();
+
+        return view('admin.author.index', compact('search', 'authors'));
 
     }
 }
