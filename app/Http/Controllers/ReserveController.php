@@ -71,7 +71,9 @@ class ReserveController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Reserve $reserve)
-    {
+    {      
+        $reserve->book->increment('quantity', 1);
+
         $reserve->delete();
 
         return redirect()->route('reserves.index')->with('success', 'Reservation deleted successfully');

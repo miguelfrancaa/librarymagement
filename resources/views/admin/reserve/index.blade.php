@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<div class="row mt-5 mb-5">
-    	<form class="col-md-6" action="{{ route('admin.users.index') }}" method="get">
+    	<form class="col-md-6" action="{{ route('admin.reserves.index') }}" method="get">
         <div class="input-group">
     	    <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
           <button type="submit" class="btn btn-outline-primary">search</button><br>
@@ -16,7 +16,7 @@
     	@endif
 	</div>
   <div class="row">
-    <div class="col-md-12 mb-5"><button class="btn btn-primary me-3 filter-button" data-filter='all'>All</button><button class="btn btn-outline-primary me-3 filter-button" data-filter='black'>Reserved</button><button class="btn btn-outline-primary filter-button" data-filter='grey'>Limit date passed</button><button  onclick="return confirm('Do you really want to delete all records?')" class="btn btn-outline-primary float-end">Delete all reserves with limit date passed</button></div>
+    <div class="col-md-12 mb-5"><button class="btn btn-primary me-3 filter-button" data-filter='all'>All</button><button class="btn btn-outline-primary me-3 filter-button" data-filter='black'>Reserved</button><button class="btn btn-outline-primary filter-button" data-filter='grey'>Limit date passed</button><a href="{{ route('admin.delete.reserves') }}"><button  onclick="return confirm('Do you really want to delete all records?')" class="btn btn-outline-primary float-end">Delete all reserves with limit date passed</button></a></div>
   </div>
   <div class="row">
 	<table class="table table-hover">
@@ -43,7 +43,7 @@
       <td style="color:{{$classColor}}">{{ $reserve->user->firstname }} {{ $reserve->user->lastname }}</td>
       <td style="color:{{$classColor}}">{{ $reserve->book->author->name }} - {{ $reserve->book->title }}</td>
       <td style="color:{{$classColor}}">{{ $reserve->created_at->addDays(3)->format('d-m-Y') }}</td>
-     <td><form action='' method="POST">
+     <td><form action="{{ route('admin.destroy.reserve', [$reserve]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button onclick="return confirm('Quer mesmo apagar este livro?')" class="btn btn-danger btn-sm" type="submit">Delete</button></form>

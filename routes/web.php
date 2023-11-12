@@ -51,4 +51,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/users', [AdminController::class, 'usersindex'])->name('admin.users.index');
 
     Route::get('/reserves', [AdminController::class, 'reservesindex'])->name('admin.reserves.index');
+
+    Route::get('/reserves/delete', [AdminController::class, 'deletereserves'])->name('admin.delete.reserves');
+
+    Route::delete('/reserve/{reserve}', [AdminController::class, 'destroyreserve'])->name('admin.destroy.reserve');
 });

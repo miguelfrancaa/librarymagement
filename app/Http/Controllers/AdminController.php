@@ -102,13 +102,44 @@ class AdminController extends Controller
         $search = request('search');
         $query = Reserve::query();
 
-        if($search){
-            $query->where('firstname', 'like', '%' .$search . '%')
-            ->orWhere('lastname', 'like', '%' .$search . '%');
-        }
+        if ($search) {
+        $query->whereHas('user', function ($userQuery) use ($search) {
+            $userQuery->where(function ($nameQuery) use ($search) {
+                $nameQuery->whereRaw("CONCAT(firstname, ' ', lastname) LIKE ?", ["%{$search}%"]);
+            });
+        });
+    }
 
         $reserves = $query->get();
 
         return view('admin.reserve.index', compact('search', 'reserves'));
+    }
+
+    public function deletereserves(){
+
+    $threeDaysAgo = now()->subDays(3);
+
+    $reserves = Reserve::where('created_at', '<', $threeDaysAgo)->get();
+
+    foreach($reserves as $reserve){
+
+        $book = $reserve->book;
+
+        $book->increment('quantity', 1);
+
+        $reserve->delete();
+    }
+
+    return redirect('admin/reserves');
+
+    }
+
+    public function destroyreserve(Reserve $reserve){
+
+        $reserve->book->increment('quantity', 1);
+
+        $reserve->delete();
+
+        return redirect('admin/reserves')->with('success', 'Reserve deleted successfully.');
     }
 }
