@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReserveController;
@@ -28,6 +29,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
+
+Route::get('/author/{author}', [AuthorController::class, 'show'])->name('author.show');
 
 Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store')->middleware('auth');
 
@@ -55,4 +58,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/reserves/delete', [AdminController::class, 'deletereserves'])->name('admin.delete.reserves');
 
     Route::delete('/reserve/{reserve}', [AdminController::class, 'destroyreserve'])->name('admin.destroy.reserve');
+
+     Route::get('/authors', [AdminController::class, 'authorsindex'])->name('admin.authors.index');
 });

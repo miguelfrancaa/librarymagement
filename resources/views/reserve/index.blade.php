@@ -11,7 +11,7 @@
       <th scope="col"></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody> 
 @foreach($reserves as $reserve)
 	<tr>
     <td><h4>{{ $reserve->title }}</h4></td>
@@ -26,6 +26,9 @@
 @endforeach
   </tbody>
 </table>
+@if(count($reserves) == 0)
+    <h3 class="mt-4">You don't have any reserved book yet. </h3>
+@endif
 </div>
 
 @endsection

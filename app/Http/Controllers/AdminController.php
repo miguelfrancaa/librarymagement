@@ -142,4 +142,8 @@ class AdminController extends Controller
 
         return redirect('admin/reserves')->with('success', 'Reserve deleted successfully.');
     }
+
+    public function authorsindex{
+
+    }
 }

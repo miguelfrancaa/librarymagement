@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -36,7 +37,9 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $books = Book::where('author_id', $author->id)->take(3)->get();
+
+        return view('author.show', compact('author', 'books'));
     }
 
     /**
