@@ -46,7 +46,7 @@ Route::get('/reserves', [ReserveController::class, 'index'])->name('reserves.ind
 
 Route::delete('/reserve/{reserve}', [ReserveController::class, 'destroy'])->name('reserve.destroy')->middleware('auth');
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
     Route::get('/books', [AdminController::class, 'booksindex'])->name('admin.books.index');

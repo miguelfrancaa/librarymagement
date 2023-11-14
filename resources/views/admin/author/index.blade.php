@@ -9,6 +9,11 @@
           <button type="submit" class="btn btn-outline-primary">search</button><br>
         </div>
     	</form>
+    	<div class="col-md-6">
+     	   <a href="#">
+     	       <button class="btn btn-primary" style="float: right;">New author +</button>
+     	   </a>
+    	</div>
     	@if($search)
     	    <div class="col-md-12">
     	        <h6 class="searching">You are searching for '{{ $search }}'</h6>

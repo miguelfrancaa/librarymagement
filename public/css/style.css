@@ -14,3 +14,12 @@
 .authorName{
 	color: black;
 }
+
+.perfectCover{
+	opacity: 0.9;
+  background: no-repeat; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

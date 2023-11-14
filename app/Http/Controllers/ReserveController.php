@@ -36,9 +36,11 @@ class ReserveController extends Controller
 
         if ($user->reserves->contains($book)) {
             $user->reserves()->detach($book);
+             $book->increment('quantity', 1);
             return redirect()->back()->with('removed', 'Book reservation removed.');
         } else {
             $user->reserves()->attach($book);
+            $book->decrement('quantity', 1);
             return redirect()->back()->with('success', 'Book reserved.<br>You can pick up your book until ' . $NewDate=Date('d-m-Y', strtotime('+3 days')));
         }
     }
