@@ -8,6 +8,7 @@ use App\Models\Reserve;
 use App\Models\Author;
 use App\Models\Category;
 use App\Models\User;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController extends Controller
 {
@@ -181,17 +182,77 @@ class AdminController extends Controller
 
     }
 
-    public function storebook(){
+    public function storebook(Request $request){
 
         $bookInputs = $request->validate([
             'title' => ['required', 'max:200'],
             'description' => ['required', 'max:5000'],
             'quantity' => ['required', 'numeric', 'min:0'],
-            'bookImage' => ['required|image|mimes:jpg,png,jpeg'],
-            'author_id' => ['required', 'exists:authors,id'],
-            'category_id' => ['required', 'exists:categories,id']
+            'bookImage' => 'required|image|mimes:jpg,png,jpeg'
         ]);
 
+        if(empty($request->input('author'))){
+            $authorData = $request->validate([
+                'newAuthor' => ['required', 'min:2']
+            ]);
+        }else{
+            $authorData = $request->validate([
+                'author' => ['required']
+            ]);
+        }
+
+        $book = new Book;
+
+        if(!empty($request->author)){
+            $authorBook = $request->author;
+        }else{
+            $author = new Author;
+
+            $author->name = $request->newAuthor;
+
+            $author->save();
+
+            $authorBook = $author->id;
+        }
+
+        if(!empty($request->category)){
+            $categoryBook = $request->category;
+        }else{
+            $category = new Category;
+
+            $category->name = $request->newCategory;
+
+            $category->save();
+
+            $categoryBook = $category->id;
+        }
+
+        if($request->hasFile('bookImage') && $request->file('bookImage')->isValid()){
+
+            $requestImage = $request->file('bookImage');
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . '.' . $extension;
+
+
+            $img = Image::make($requestImage);
+            $img->fit(400, 400);
+
+            $img->save(public_path('img/books') . '/' . $imageName);
+
+        }
+
+        $book->title = $request->title;
+        $book->description = $request->description;
+        $book->quantity = $request->quantity;
+        $book->author_id = $authorBook;
+        $book->category_id = $categoryBook;
+        $book->image = $imageName;
+
+        $book->save();
+
+        return redirect('/admin/books')->with('success', 'Livro Adicionado com sucesso');
 
 
     }

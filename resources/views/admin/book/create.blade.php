@@ -12,14 +12,14 @@
         </ul>
     </div>
 @endif
-  <form method="POST" action="" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('admin.store.book') }}" enctype="multipart/form-data">
     @csrf
   <div class="form-group mb-5">
     <label for="title">Title</label>
     <input max="200" required name="title" type="text" class="form-control" id="title" placeholder="Book's title">
   </div>
   <div class="form-group mb-5">
-    <label for="autor">Author</label>
+    <label for="author">Author</label>
     <select multiple class="form-control" id="author" name="author">
 @foreach($authors as $author)
   <option value="{{ $author->id }}">{{ $author->name }}</option>

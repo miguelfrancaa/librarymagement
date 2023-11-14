@@ -24,7 +24,7 @@
     <tr>
       <th scope="col">#ID</th>
       <th scope="col">Name</th>
-      <th scope="col">Author</th>
+      <th scope="col">Role</th>
       <th scope="col" colspan="2">Actions</th>
     </tr>
   </thead>
