@@ -38,12 +38,12 @@
       <td>{{ $book->author->name }}</td>
      <td><form action='' method="POST">
         @csrf
-        <button class="btn btn-warning btn-sm" type="submit">Editar</button></form>
+        <button class="btn btn-warning btn-sm" type="submit">Edit</button></form>
       </td>
-     <td><form action='' method="POST">
+     <td><form action='{{ route('admin.destroy.book', [$book]) }}' method="POST">
         @csrf
         @method('DELETE')
-        <button onclick="return confirm('Quer mesmo apagar este livro?')" class="btn btn-danger btn-sm" type="submit">Apagar</button></form>
+        <button onclick="return confirm('Do you really want to delete this book?')" class="btn btn-danger btn-sm" type="submit">Delete</button></form>
       </td>
     </tr>
 @endforeach

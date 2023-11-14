@@ -158,4 +158,15 @@ class AdminController extends Controller
         return view('admin.author.index', compact('search', 'authors'));
 
     }
+
+    public function destroybook(Book $book){
+
+        $book->reserved()->detach();
+
+        $book->favorited()->detach();
+
+        $book->delete();
+
+        return redirect('/admin/books');
+    }
 }
