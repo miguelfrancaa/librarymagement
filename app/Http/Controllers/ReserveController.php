@@ -31,7 +31,7 @@ class ReserveController extends Controller
      */
     public function store(Request $request)
     {
-        $user = auth()->user();
+        $user = auth()->user(); 
         $book = Book::find($request->book_id);
 
         if ($user->reserves->contains($book)) {
@@ -39,6 +39,11 @@ class ReserveController extends Controller
              $book->increment('quantity', 1);
             return redirect()->back()->with('removed', 'Book reservation removed.');
         } else {
+
+            if ($book->quantity < 1) {
+            return redirect()->back()->with('error', 'Book is out of stock.');
+            }
+
             $user->reserves()->attach($book);
             $book->decrement('quantity', 1);
             return redirect()->back()->with('success', 'Book reserved.<br>You can pick up your book until ' . $NewDate=Date('d-m-Y', strtotime('+3 days')));

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Reserve;
 use App\Models\Author;
+use App\Models\Category;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -168,5 +169,15 @@ class AdminController extends Controller
         $book->delete();
 
         return redirect('/admin/books');
+    }
+
+    public function createbook(){
+
+        $authors = Author::all();
+
+        $categories = Category::all();
+
+        return view('admin.book.create', compact('categories', 'authors'));
+
     }
 }

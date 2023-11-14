@@ -59,7 +59,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::delete('/reserve/{reserve}', [AdminController::class, 'destroyreserve'])->name('admin.destroy.reserve');
 
-     Route::get('/authors', [AdminController::class, 'authorsindex'])->name('admin.authors.index');
+    Route::get('/authors', [AdminController::class, 'authorsindex'])->name('admin.authors.index');
 
-     Route::delete('/book/{book}', [AdminController::class, 'destroybook'])->name('admin.destroy.book');
+    Route::delete('/book/{book}', [AdminController::class, 'destroybook'])->name('admin.destroy.book');
+
+    Route::get('/createbook', [AdminController::class, 'createbook'])->name('admin.create.book');
 });

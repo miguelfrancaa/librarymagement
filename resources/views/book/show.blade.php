@@ -22,7 +22,7 @@
 				<form action="{{ route('reserve.store') }}" method="POST">
 					@csrf
 					<input type="hidden" name="book_id" value="{{ $book->id }}">
-					<button class="btn btn-primary btn-lg" type="submit"><span class="me-3">@if($reserveBtn === 'add')Reserve Book @else Delete Reserve @endif</span><i class="bi bi-arrow-right-square-fill"></i></button>
+					@if($book->quantity <= 0 && !auth()->user()->reserves->contains($book)) <button class="btn btn-secondary btn-lg">Out of stock</button> @else <button class="btn btn-primary btn-lg" type="submit"><span class="me-3">@if($reserveBtn === 'add')Reserve Book @else Delete Reserve @endif</span><i class="bi bi-arrow-right-square-fill"></i></button>@endif
 				</form>
 			</div>
 			<div class="mb-3"><a href="{{ route('category.show', [$book->category]) }}"><h5>See more from the category: {{ $book->category->name }}</h5></a></div>

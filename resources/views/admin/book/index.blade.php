@@ -11,7 +11,7 @@
         </div>
     	</form>
     	<div class="col-md-6">
-     	   <a href="#">
+     	   <a href="{{ route('admin.create.book') }}">
      	       <button class="btn btn-primary" style="float: right;">New book +</button>
      	   </a>
     	</div>
