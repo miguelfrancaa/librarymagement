@@ -15,7 +15,7 @@
   <form method="POST" action="" enctype="multipart/form-data">
     @csrf
   <div class="form-group mb-5">
-    <label for="titulo">Title</label>
+    <label for="title">Title</label>
     <input max="200" required name="title" type="text" class="form-control" id="title" placeholder="Book's title">
   </div>
   <div class="form-group mb-5">

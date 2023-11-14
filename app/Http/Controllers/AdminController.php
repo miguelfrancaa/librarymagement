@@ -180,4 +180,19 @@ class AdminController extends Controller
         return view('admin.book.create', compact('categories', 'authors'));
 
     }
+
+    public function storebook(){
+
+        $bookInputs = $request->validate([
+            'title' => ['required', 'max:200'],
+            'description' => ['required', 'max:5000'],
+            'quantity' => ['required', 'numeric', 'min:0'],
+            'bookImage' => ['required|image|mimes:jpg,png,jpeg'],
+            'author_id' => ['required', 'exists:authors,id'],
+            'category_id' => ['required', 'exists:categories,id']
+        ]);
+
+
+
+    }
 }

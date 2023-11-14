@@ -63,5 +63,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::delete('/book/{book}', [AdminController::class, 'destroybook'])->name('admin.destroy.book');
 
-    Route::get('/createbook', [AdminController::class, 'createbook'])->name('admin.create.book');
+    Route::get('/book/create', [AdminController::class, 'createbook'])->name('admin.create.book');
+
+    Route::post('/book/store', [AdminController::class, 'storebook'])->name('admin.store.book');
 });
