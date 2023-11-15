@@ -253,7 +253,12 @@ class AdminController extends Controller
         $book->save();
 
         return redirect('/admin/books')->with('success', 'Livro Adicionado com sucesso');
+    }
 
+    public function destroyuser(User $user){
 
+        $user->delete();
+
+        return redirect('admin/users')->with('success', 'Reserve deleted successfully.');
     }
 }

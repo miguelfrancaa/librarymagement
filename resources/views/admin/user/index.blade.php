@@ -42,15 +42,15 @@
 	<tr class="filter {{ $roleClass }}">
       <th scope="row">{{ $user->id }}</th>
       <td>{{ $user->firstname }} {{ $user->lastname }}</td>
-      <td>{{ $user->name }}</td>
+      <td>@if($user->role == 1) Admin @else User @endif</td>
      <td><form action='' method="POST">
         @csrf
-        <button class="btn btn-warning btn-sm" type="submit">Editar</button></form>
+        <button class="btn btn-warning btn-sm" type="submit">Block</button></form>
       </td>
-     <td><form action='' method="POST">
+     <td><form action="{{ route('admin.destroy.user', [$user]) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button onclick="return confirm('Quer mesmo apagar este livro?')" class="btn btn-danger btn-sm" type="submit">Apagar</button></form>
+        <button onclick="return confirm('Do you really want to delete this user?')" class="btn btn-danger btn-sm" type="submit">Delete</button></form>
       </td>
     </tr>
 @endforeach
