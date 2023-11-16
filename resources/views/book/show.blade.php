@@ -9,7 +9,7 @@
 		<div class="col-md-6">
 			<div class="mb-4">
 				<h1 class="h2 mb-3 fw-bold">{{ $book->title }}</h1>
-				<h2 class="h3 mb-3"><a class="authorName" href="{{ route('author.show', [$book->author_id]) }}">{{ $book->author->name }}</i>
+				<h2 class="h3 mb-3"><a class="authorName" @if(!empty($book->author->description)) href="{{ route('author.show', [$book->author_id]) }}" @endif>{{ $book->author->name }}</i>
 </a></h2>
 				<h3 class="h5">{{ $book->description }}</h3>
 			</div>

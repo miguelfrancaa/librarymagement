@@ -268,5 +268,7 @@ class AdminController extends Controller
         'isActive' => $user->isActive === 0 ? 1 : 0,
     ]);
 
+         return redirect('admin/users');
+
     }
 }

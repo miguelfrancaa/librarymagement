@@ -46,7 +46,7 @@
      <td><form action="{{ route('admin.block.user', [$user]) }}" method="POST">
         @csrf
          @method('PUT')
-        <button class="btn btn-warning btn-sm" type="submit">@if($user->isActive == 1) Block @else Unblock @endif</button></form>
+        <button onclick="return confirm('Do you really want to @if($user->isActive == 1) unblock @else block @endif this user?')" class="btn btn-warning btn-sm" type="submit">@if($user->isActive == 1) Block @else Unblock @endif</button></form>
       </td>
      <td><form action="{{ route('admin.destroy.user', [$user]) }}" method="POST">
         @csrf
