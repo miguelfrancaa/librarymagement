@@ -261,4 +261,12 @@ class AdminController extends Controller
 
         return redirect('admin/users')->with('success', 'Reserve deleted successfully.');
     }
+
+    public function blockuser(User $user){
+
+         $user->update([
+        'isActive' => $user->isActive === 0 ? 1 : 0,
+    ]);
+
+    }
 }

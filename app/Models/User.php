@@ -26,6 +26,8 @@ class User extends Authenticatable
         'postalcode',
         'email',
         'password',
+        'role',
+        'isActive'
     ];
 
     /**

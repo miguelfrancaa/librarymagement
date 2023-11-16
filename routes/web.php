@@ -55,6 +55,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
     Route::delete('/user/{user}', [AdminController::class, 'destroyuser'])->name('admin.destroy.user');
 
+    Route::put('/user/{user}', [AdminController::class, 'blockuser'])->name('admin.block.user');
+
     Route::get('/reserves', [AdminController::class, 'reservesindex'])->name('admin.reserves.index');
 
     Route::get('/reserves/delete', [AdminController::class, 'deletereserves'])->name('admin.delete.reserves');

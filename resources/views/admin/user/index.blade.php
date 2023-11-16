@@ -43,9 +43,10 @@
       <th scope="row">{{ $user->id }}</th>
       <td>{{ $user->firstname }} {{ $user->lastname }}</td>
       <td>@if($user->role == 1) Admin @else User @endif</td>
-     <td><form action='' method="POST">
+     <td><form action="{{ route('admin.block.user', [$user]) }}" method="POST">
         @csrf
-        <button class="btn btn-warning btn-sm" type="submit">Block</button></form>
+         @method('PUT')
+        <button class="btn btn-warning btn-sm" type="submit">@if($user->isActive == 1) Block @else Unblock @endif</button></form>
       </td>
      <td><form action="{{ route('admin.destroy.user', [$user]) }}" method="POST">
         @csrf
