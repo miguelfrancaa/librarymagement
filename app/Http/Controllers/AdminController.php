@@ -185,7 +185,7 @@ class AdminController extends Controller
     public function storebook(Request $request){
 
         $bookInputs = $request->validate([
-            'title' => ['required', 'max:200'],
+            'title' => ['required', 'max:200', 'min:10'],
             'description' => ['required', 'max:5000'],
             'quantity' => ['required', 'numeric', 'min:0'],
             'bookImage' => 'required|image|mimes:jpg,png,jpeg'

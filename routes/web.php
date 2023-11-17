@@ -22,31 +22,33 @@ use App\Http\Controllers\AdminController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('isActive');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('isActive');
 
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('category.show')->middleware('isActive');
 
-Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show');
+Route::get('/books/{book}', [BookController::class, 'show'])->name('book.show')->middleware('isActive');
 
-Route::get('/author/{author}', [AuthorController::class, 'show'])->name('author.show');
+Route::get('/author/{author}', [AuthorController::class, 'show'])->name('author.show')->middleware('isActive');
 
-Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store')->middleware('auth');
+Route::get('/blocked', [App\Http\Controllers\HomeController::class, 'blocked'])->name('blocked')->middleware('isActive');
 
-Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index')->middleware('auth');
+Route::post('/favorite/{book}', [FavoritesController::class, 'store'])->name('favorite.store')->middleware(['auth', 'isActive']);
 
-Route::get('/contact', [ContactController::class, 'create'])->name('contact.create')->middleware('auth');
+Route::get('/favorites', [FavoritesController::class, 'index'])->name('favorite.index')->middleware(['auth', 'isActive']);
 
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('auth');
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create')->middleware(['auth', 'isActive']);
 
-Route::post('/reserve', [ReserveController::class, 'store'])->name('reserve.store')->middleware('auth');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware(['auth', 'isActive']);
 
-Route::get('/reserves', [ReserveController::class, 'index'])->name('reserves.index')->middleware('auth');
+Route::post('/reserve', [ReserveController::class, 'store'])->name('reserve.store')->middleware(['auth', 'isActive']);
 
-Route::delete('/reserve/{reserve}', [ReserveController::class, 'destroy'])->name('reserve.destroy')->middleware('auth');
+Route::get('/reserves', [ReserveController::class, 'index'])->name('reserves.index')->middleware(['auth', 'isActive']);
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
+Route::delete('/reserve/{reserve}', [ReserveController::class, 'destroy'])->name('reserve.destroy')->middleware(['auth', 'isActive']);
+
+Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'isActive']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
     Route::get('/books', [AdminController::class, 'booksindex'])->name('admin.books.index');

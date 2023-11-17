@@ -6,7 +6,7 @@
   @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
-            @foreach ($errors->all() as $error)
+            @foreach ($errors->all() as $error) 
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
@@ -16,7 +16,7 @@
     @csrf
   <div class="form-group mb-5">
     <label for="title">Title</label>
-    <input max="200" required name="title" type="text" class="form-control" id="title" placeholder="Book's title">
+    <input max="200" required name="title" type="text" class="form-control" id="title" placeholder="Book's title" value="{{ old('title') }}">
   </div>
   <div class="form-group mb-5">
     <label for="author">Author</label>
@@ -29,11 +29,11 @@
   </div>
    <div class="form-group mb-5">
     <label for="bookDescription">Description</label>
-    <textarea class="form-control" id="bookDescription" rows="3" placeholder="Book's description" name="description"></textarea>
+    <textarea class="form-control" id="bookDescription" rows="3" placeholder="Book's description" name="description">{{ old('description') }}</textarea>
   </div>
   <div class="form-group mb-5">
     <label for="bookQuantity">Quantity</label>
-    <input type="number" id="bookQuantity" class="form-control" name="quantity">
+    <input type="number" id="bookQuantity" class="form-control" name="quantity" value="{{ old('quantity') }}">
   </div>
   <div class="form-group mb-5">
     <label for="bookImage" class="form-label">Image</label>

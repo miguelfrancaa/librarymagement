@@ -42,4 +42,8 @@ class HomeController extends Controller
 
         return view('home', compact('books', 'search', 'categories'));
     }
+
+    public function blocked(){
+        return view ('/blocked');
+    }
 }
