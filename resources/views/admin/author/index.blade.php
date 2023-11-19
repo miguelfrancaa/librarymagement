@@ -10,7 +10,7 @@
         </div>
     	</form>
     	<div class="col-md-6">
-     	   <a href="#">
+     	   <a href="{{ route('admin.create.author') }}">
      	       <button class="btn btn-primary" style="float: right;">New author +</button>
      	   </a>
     	</div>

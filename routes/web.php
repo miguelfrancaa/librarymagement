@@ -72,4 +72,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'isActive']], funct
     Route::get('/book/create', [AdminController::class, 'createbook'])->name('admin.create.book');
 
     Route::post('/book/store', [AdminController::class, 'storebook'])->name('admin.store.book');
+
+    Route::get('/author/create', [AdminController::class, 'createauthor'])->name('admin.create.author');
+
+    Route::post('/author/store', [AdminController::class, 'storeauthor'])->name('admin.store.author');
 });

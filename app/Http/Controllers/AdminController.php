@@ -185,7 +185,7 @@ class AdminController extends Controller
     public function storebook(Request $request){
 
         $bookInputs = $request->validate([
-            'title' => ['required', 'max:200', 'min:10'],
+            'title' => ['required', 'max:200'],
             'description' => ['required', 'max:5000'],
             'quantity' => ['required', 'numeric', 'min:0'],
             'bookImage' => 'required|image|mimes:jpg,png,jpeg'
@@ -269,6 +269,48 @@ class AdminController extends Controller
     ]);
 
          return redirect('admin/users');
+
+    }
+
+    public function createauthor(){
+
+        return view('admin.author.create');
+
+    }
+
+    public function storeauthor(Request $request){
+
+        $authorInputs = $request->validate([
+            'name' => ['required', 'max:200'],
+            'description' => ['required', 'max:5000'],
+            'authorImage' => 'required|image|mimes:jpg,png,jpeg'
+        ]);
+
+        $author = new Author;
+
+        if($request->hasFile('authorImage') && $request->file('authorImage')->isValid()){
+
+            $requestImage = $request->file('authorImage');
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . '.' . $extension;
+
+
+            $img = Image::make($requestImage);
+            $img->fit(400, 400);
+
+            $img->save(public_path('img/authors') . '/' . $imageName);
+
+        }
+
+        $author->name = $request->name;
+        $author->description = $request->description;
+        $author->image = $imageName;
+
+        $author->save();
+
+        return redirect('/admin/authors')->with('success', 'Author added with sucess');
 
     }
 }
