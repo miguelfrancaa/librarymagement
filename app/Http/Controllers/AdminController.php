@@ -313,4 +313,46 @@ class AdminController extends Controller
         return redirect('/admin/authors')->with('success', 'Author added with sucess');
 
     }
+
+    public function editauthor(Author $author){
+
+        return view('admin.author.edit', compact('author'));
+
+    }
+
+    public function updateautor(Request $request, Author $author){
+
+        $imageName = $author->image;
+
+         $request->validate([
+            "name" => ["required", "max:255"],
+            "description" => ["max:5000"],
+            'authorImage' => 'image|mimes:jpg,png,jpeg'
+        ]);
+
+         if(!empty($request->authorImage)){
+
+            $requestImage = $request->file('authorImage');
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . '.' . $extension;
+
+
+            $img = Image::make($requestImage);
+            $img->fit(400, 400);
+
+            $img->save(public_path('img/authors') . '/' . $imageName);
+
+         }
+
+         $author->update([
+                "name" => $request['name'],
+                "description" => $request['description'],
+                "image" => $imageName,
+            ]);
+
+            return redirect('/admin/authors')->with('success', 'Author updated with sucess');
+
+    }
 }

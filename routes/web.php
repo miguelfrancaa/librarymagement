@@ -73,7 +73,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'isActive']], funct
 
     Route::post('/book/store', [AdminController::class, 'storebook'])->name('admin.store.book');
 
-    Route::get('/author/create', [AdminController::class, 'createauthor'])->name('admin.create.author');
+    Route::get('/author', [AdminController::class, 'createauthor'])->name('admin.create.author');
 
-    Route::post('/author/store', [AdminController::class, 'storeauthor'])->name('admin.store.author');
+    Route::post('/author', [AdminController::class, 'storeauthor'])->name('admin.store.author');
+
+    Route::get('/author/{author}', [AdminController::class, 'editauthor'])->name('admin.edit.author');
+
+    Route::put('/author/{author}', [AdminController::class, 'updateautor'])->name('admin.update.author');
 });

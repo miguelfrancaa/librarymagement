@@ -11,6 +11,7 @@
 			</div>
 		</div>
 	</div>
+	@if($books->count() > 0)
 	<div class="row mt-5">
 		<div class="h4 col-md-12 mb-4">Books of {{$author->name}}:</div>
 			@foreach($books as $book)
@@ -18,6 +19,7 @@
 				<h6>{{ Str::limit($book->description, 40) }}</h6></div>
 			@endforeach
 	</div>
+	@endif
 </div>
 
 @endsection

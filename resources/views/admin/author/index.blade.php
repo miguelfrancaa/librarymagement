@@ -36,9 +36,8 @@
       <th scope="row">{{ $author->id }}</th>
       <td>{{ $author->name }}</td>
       <td>{{ Str::limit($author->description, 50) }}</td>
-     <td><form action='' method="POST">
-        @csrf
-        <button class="btn btn-warning btn-sm" type="submit">Edit</button></form>
+     <td>
+        <a href="{{ route('admin.edit.author', [$author] ) }}"><button class="btn btn-warning btn-sm">Edit</button></a>
       </td>
      <td><form action='' method="POST">
         @csrf
