@@ -352,7 +352,81 @@ class AdminController extends Controller
                 "image" => $imageName,
             ]);
 
-            return redirect('/admin/authors')->with('success', 'Author updated with sucess');
+            return redirect('/admin/authors')->with('success', 'Author updated with success.');
+
+    }
+
+    public function editbook(Book $book){
+
+        $authors = Author::all();
+
+        $categories = Category::all();
+
+        return view('admin.book.edit', compact('book', 'authors', 'categories'));
+
+    }
+
+    public function updatebook(Request $request, Book $book){
+
+        $imageName = $book->image;
+
+        $request->validate([
+            "title" => ["required", "max:255"],
+            "description" => ["required", "max:5000"],
+            "quantity" => "required|numeric|min:0|not_in:0" ,
+            'bookImage' => 'image|mimes:jpg,png,jpeg'
+        ]);
+
+        if(!empty($request->bookImage)){
+
+            $requestImage = $request->file('bookImage');
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now')) . '.' . $extension;
+
+
+            $img = Image::make($requestImage);
+            $img->fit(400, 400);
+
+            $img->save(public_path('img/books') . '/' . $imageName);
+
+         }
+
+          if(!empty($request->newAuthor)){
+            $author = new Author;
+
+            $author->name = $request->newAuthor;
+
+            $author->save();
+
+            $authorBook = $author->id;
+        }else{
+            $authorBook = $request->author;
+        }
+
+        if(!empty($request->newCategory)){
+            $category = new Category;
+
+            $category->name = $request->newCategory;
+
+            $category->save();
+
+            $categoryBook = $category->id;
+        }else{
+            $categoryBook = $request->category;
+        }
+
+        $book->update([
+                "title" => $request['title'],
+                "description" => $request['description'],
+                "quantity" => $request['quantity'],
+                "image" => $imageName,
+                "author_id" => $authorBook,
+                "category_id" => $categoryBook
+            ]);
+
+        return redirect('/admin/books')->with('success', 'Book updated with success.');
 
     }
 }

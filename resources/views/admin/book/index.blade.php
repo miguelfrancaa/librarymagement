@@ -36,11 +36,11 @@
       <th scope="row">{{ $book->id }}</th>
       <td>{{ $book->title }}</td>
       <td>{{ $book->author->name }}</td>
-     <td><form action='' method="POST">
+     <td>
         @csrf
-        <button class="btn btn-warning btn-sm" type="submit">Edit</button></form>
+        <a href="{{ route('admin.edit.book', [$book]) }}"><button class="btn btn-warning btn-sm" type="submit">Edit</button></a>
       </td>
-     <td><form action='{{ route('admin.destroy.book', [$book]) }}' method="POST">
+     <td><form action="{{ route('admin.destroy.book', [$book]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button onclick="return confirm('Do you really want to delete this book?')" class="btn btn-danger btn-sm" type="submit">Delete</button></form>
